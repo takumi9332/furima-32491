@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
   devise_for :users
-  root "items#index.html.erb"
+  root "products#index.html.erb"
+  resources :products, only: [:new, :create]
 end
