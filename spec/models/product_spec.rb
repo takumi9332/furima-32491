@@ -25,27 +25,27 @@ RSpec.describe Product, type: :model do
       expect(@product.errors.full_messages).to include("Info can't be blank")
     end
     it "categoryが1では出品できない" do
-      @product.category_id = '1'
+      @product.category_id = 1
       @product.valid?
       expect(@product.errors.full_messages).to include("Category must be other than 1")
     end
     it "sales_statusが1では出品できない" do
-      @product.sales_status_id = '1'
+      @product.sales_status_id = 1
       @product.valid?
       expect(@product.errors.full_messages).to include("Sales status must be other than 1")
     end
     it "shipping_fee_statusが1では出品できない" do
-      @product.shipping_fee_status_id = '1'
+      @product.shipping_fee_status_id = 1
       @product.valid?
       expect(@product.errors.full_messages).to include("Shipping fee status must be other than 1")
     end
     it "prefectureが1では出品できない" do
-      @product.prefecture_id = '1'
+      @product.prefecture_id = 1
       @product.valid?
       expect(@product.errors.full_messages).to include("Prefecture must be other than 1")
     end
     it "scheduled_deliveryが1では出品できない" do
-      @product.scheduled_delivery_id = '1'
+      @product.scheduled_delivery_id = 1
       @product.valid?
       expect(@product.errors.full_messages).to include("Scheduled delivery must be other than 1")
     end
