@@ -53,5 +53,10 @@ RSpec.describe PurchaserForm, type: :model do
       @purchaser_form.valid?
       expect(@purchaser_form.errors.full_messages).to include("Phone number is invalid")
     end
+    it "tokenが空では購入できない" do
+      @purchaser_form.token = nil
+      @purchaser_form.valid?
+      expect(@purchaser_form.errors.full_messages).to include("Token can't be blank")
+    end
   end
 end
