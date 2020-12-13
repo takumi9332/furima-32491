@@ -58,5 +58,15 @@ RSpec.describe PurchaserForm, type: :model do
       @purchaser_form.valid?
       expect(@purchaser_form.errors.full_messages).to include("Token can't be blank")
     end
+    it "user_idが空では購入できない" do
+      @purchaser_form.user_id = nil
+      @purchaser_form.valid?
+      expect(@purchaser_form.errors.full_messages).to include("User can't be blank")
+    end
+    it "product_idが空では購入できない" do
+      @purchaser_form.product_id = nil
+      @purchaser_form.valid?
+      expect(@purchaser_form.errors.full_messages).to include("Product can't be blank")
+    end
   end
 end
