@@ -5,7 +5,7 @@ class PurchaserForm
   with_options presence: true do
     validates :user_id
     validates :product_id
-    validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "ハイフン(-)を使用してください"}
+    validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "はハイフン(-)を使用してください"}
     validates :city
     validates :address
     validates :phone_number, format: {with: /\A[0-9]{11}\z/}
