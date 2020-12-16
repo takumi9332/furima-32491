@@ -11,13 +11,16 @@ class PurchasesController < ApplicationController
 
   def create
     @purchaser = PurchaserForm.new(purchaser_params)
-    if @purchaser.valid?
+    if current_user.card.present?
+      pay_registration
+    elsif @purchaser.valid?
       pay_product
-      @purchaser.save
-      redirect_to root_path
     else
       render :index
+      return
     end
+    @purchaser.save
+    redirect_to root_path
   end
 
   private
@@ -36,5 +39,15 @@ class PurchasesController < ApplicationController
       card: purchaser_params[:token],
       currency: 'jpy'
     )
+  end
+
+  def pay_registration
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+   customer_token = current_user.card.customer_token
+   Payjp::Charge.create(
+     amount: @product[:price],
+     customer: customer_token,
+     currency: 'jpy' 
+     )
   end
 end
