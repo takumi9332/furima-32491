@@ -17,6 +17,7 @@
 
 - has_many :purchases
 - has_many :products
+- has_one :card, dependent: :destroy
 
 
 ## products テーブル
@@ -62,5 +63,18 @@
 | building      | string     |                                |
 | phone_number  | string     | null: false                    |
 | purchase      | references | null: false, foreign_key: true |
+
 ### Association
 - belongs_to :purchase
+
+
+## cards テーブル
+
+| Column         | Type       | Options           |
+| -------------- | ---------- | ----------------- |
+| card_token     | string     | null: false       |
+| customer_token | string     | null: false       |
+| user           | references | foreign_key: true |
+
+### Association
+- belongs_to :user
